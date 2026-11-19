@@ -1,0 +1,1 @@
+import e from"./github-light-default-BXViO-2h.js";export{e as default};

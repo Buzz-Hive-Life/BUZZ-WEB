@@ -1,0 +1,1 @@
+import e from"./vitesse-black-fwtXNY1n.js";export{e as default};

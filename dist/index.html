@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/buzz.svg?v=20260610" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <!--
+      Boot background: the document must be painted before the app bundle (and
+      its stylesheets) load so cold boot never flashes ahead of the loading
+      gate. The window itself is also painted pre-document via `backgroundColor`
+      in tauri.conf.json. The body paints its own themed background once the app
+      CSS loads, so this never shows through after boot.
+
+      The linked stylesheet (boot.css) applies the initial black background.
+      Kept as a <link> rather than an inline <style> to avoid Tauri's nonce
+      injection for style-src (see boot.css for the full rationale).
+
+      The inline script below reads the cached theme background (same
+      `buzz-theme-cache` entry ThemeProvider writes) and applies it synchronously
+      so the boot color matches the themed loading gate — no black flash on light
+      themes. On the first-ever launch (no cache yet) it seeds the light/dark
+      class from the OS color scheme, matching the Buzz theme in System mode
+      that ThemeProvider applies moments later — no wrong-scheme flash before
+      it loads.
+    -->
+    <link rel="stylesheet" href="/boot.css" />
+    <script>
+      (() => {
+        var cached, bg, parsed;
+        try {
+          cached = window.localStorage.getItem("buzz-theme-cache");
+          if (!cached) {
+            // No stored theme: the default is Buzz following the OS scheme,
+            // so seed the matching class (and backdrop) now. Otherwise the
+            // setup gate would paint the wrong scheme until ThemeProvider
+            // loads asynchronously.
+            if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+              document.documentElement.classList.add("dark");
+            } else {
+              document.documentElement.classList.add("light");
+              document.documentElement.style.backgroundColor = "#fff";
+            }
+            return;
+          }
+          parsed = JSON.parse(cached);
+          bg = parsed.vars["--background"];
+          if (bg) document.documentElement.style.backgroundColor = `hsl(${bg})`;
+          // Match the cached light/dark class so themed vars resolve correctly
+          // before ThemeProvider mounts.
+          document.documentElement.classList.add(parsed.isDark ? "dark" : "light");
+        } catch {
+          /* fall back to the black default above */
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-DVOOGOBp.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/react-CYAoy8YY.js">
+    <link rel="modulepreload" crossorigin href="/assets/preload-helper-zJ_50EbN.js">
+    <link rel="modulepreload" crossorigin href="/assets/core-CGTdLJHd.js">
+    <link rel="modulepreload" crossorigin href="/assets/tauri-1rwMfVKs.js">
+    <link rel="modulepreload" crossorigin href="/assets/dist-4WOC3HhI.js">
+    <link rel="modulepreload" crossorigin href="/assets/card-texture-BFuNz6dn.js">
+    <link rel="modulepreload" crossorigin href="/assets/card-DlGhzMBv.js">
+    <link rel="modulepreload" crossorigin href="/assets/useRouter-BTrlWHbG.js">
+    <link rel="modulepreload" crossorigin href="/assets/chromeLayout-Si9USbJd.js">
+    <link rel="modulepreload" crossorigin href="/assets/react-dom-BE7rlsJy.js">
+    <link rel="modulepreload" crossorigin href="/assets/dist-I516Itrl.js">
+    <link rel="modulepreload" crossorigin href="/assets/event-Dx8IHwKE.js">
+    <link rel="modulepreload" crossorigin href="/assets/dialog-CIpYiZ8p.js">
+    <link rel="modulepreload" crossorigin href="/assets/dist-CqFt2AB_.js">
+    <link rel="modulepreload" crossorigin href="/assets/dist-Cierd-FH.js">
+    <link rel="modulepreload" crossorigin href="/assets/badge-BMcWGWt_.js">
+    <link rel="modulepreload" crossorigin href="/assets/hooks-BEnXp62H.js">
+    <link rel="modulepreload" crossorigin href="/assets/ProfileAvatar-Cb4X2GGZ.js">
+    <link rel="modulepreload" crossorigin href="/assets/hooks-D3_N5AmK.js">
+    <link rel="modulepreload" crossorigin href="/assets/VirtualizedList-D7lUiaWI.js">
+    <link rel="modulepreload" crossorigin href="/assets/switch-B27l-FVO.js">
+    <link rel="modulepreload" crossorigin href="/assets/alert-dialog-Bl9eICTa.js">
+    <link rel="modulepreload" crossorigin href="/assets/separator-Bc7BfKUw.js">
+    <link rel="modulepreload" crossorigin href="/assets/StatusEmoji-DzBwUSBY.js">
+    <link rel="modulepreload" crossorigin href="/assets/identity-CRPuaCu2.js">
+    <link rel="modulepreload" crossorigin href="/assets/chooser-dialog-content-iPM6dOhs.js">
+    <link rel="modulepreload" crossorigin href="/assets/tooltip-Ci1NMlL9.js">
+    <link rel="modulepreload" crossorigin href="/assets/keyboard-shortcuts-y2kzqhGw.js">
+    <link rel="modulepreload" crossorigin href="/assets/teamPersonas-vlIfCOYd.js">
+    <link rel="modulepreload" crossorigin href="/assets/agentSnapshotClipboard-DFEmQSvp.js">
+    <link rel="modulepreload" crossorigin href="/assets/channelMemberAdmission--lXiFu5u.js">
+    <link rel="modulepreload" crossorigin href="/assets/tabs-CqSb_Y21.js">
+    <link rel="modulepreload" crossorigin href="/assets/checkbox-CCDyP37l.js">
+    <link rel="modulepreload" crossorigin href="/assets/smoothCorners-POpSFAI1.js">
+    <link rel="modulepreload" crossorigin href="/assets/autoPinMentionedAgentsPreference-CJ0k_q6b.js">
+    <link rel="modulepreload" crossorigin href="/assets/draftMentionRefs-DaVdT-yd.js">
+    <link rel="modulepreload" crossorigin href="/assets/hooks-CwM05_4c.js">
+    <link rel="modulepreload" crossorigin href="/assets/searchHighlightStyle-DRlP35nX.js">
+    <link rel="modulepreload" crossorigin href="/assets/UserAvatar-CAc5AtUi.js">
+    <link rel="modulepreload" crossorigin href="/assets/skeleton-BUn9rHfo.js">
+    <link rel="modulepreload" crossorigin href="/assets/download-BS6TeGSy.js">
+    <link rel="modulepreload" crossorigin href="/assets/code-PdZsaGEB.js">
+    <link rel="modulepreload" crossorigin href="/assets/maximize-2-D4tB5siQ.js">
+    <link rel="modulepreload" crossorigin href="/assets/play-SnNb2xEw.js">
+    <link rel="modulepreload" crossorigin href="/assets/markdown-wI0pzsy-.js">
+    <link rel="modulepreload" crossorigin href="/assets/agentConfigOptions-Czx2hNZ0.js">
+    <link rel="modulepreload" crossorigin href="/assets/AddChannelBotPersonasSection-Bos5qyiC.js">
+    <link rel="modulepreload" crossorigin href="/assets/SettingsOptionGroup-DIXzEeIp.js">
+    <link rel="modulepreload" crossorigin href="/assets/PageHeader-DyJ4NiHb.js">
+    <link rel="modulepreload" crossorigin href="/assets/textarea-2jsivLYO.js">
+    <link rel="modulepreload" crossorigin href="/assets/ellipsis-CRcZ-mhF.js">
+    <link rel="modulepreload" crossorigin href="/assets/ChannelTemplatesSettingsCard-D5MXHPBj.js">
+    <link rel="modulepreload" crossorigin href="/assets/lock-sFUeKp9I.js">
+    <link rel="modulepreload" crossorigin href="/assets/ChannelGlyph-y3lS4ez4.js">
+    <link rel="modulepreload" crossorigin href="/assets/PanelSectionGroup-KIGYnh0s.js">
+    <link rel="modulepreload" crossorigin href="/assets/segmented-control-I5Xjdyws.js">
+    <link rel="modulepreload" crossorigin href="/assets/info-Cl8qStL-.js">
+    <link rel="modulepreload" crossorigin href="/assets/ChannelTypeSettings-Dg7sVOze.js">
+    <link rel="modulepreload" crossorigin href="/assets/restrictionState-B-qULLLY.js">
+    <link rel="modulepreload" crossorigin href="/assets/publicUi-BV78kDJU.js">
+    <link rel="modulepreload" crossorigin href="/assets/arrow-left-DhQQvfL1.js">
+    <link rel="modulepreload" crossorigin href="/assets/use-mobile-Dh6sjXD8.js">
+    <link rel="modulepreload" crossorigin href="/assets/sidebar-Cj9uC1DA.js">
+    <link rel="modulepreload" crossorigin href="/assets/eye-CkqaCwJv.js">
+    <link rel="modulepreload" crossorigin href="/assets/link-2-C52D70eC.js">
+    <link rel="stylesheet" crossorigin href="/assets/card-texture-B4AjYKdN.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-lYDcR84w.css">
+  </head>
+
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

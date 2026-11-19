@@ -1,0 +1,1 @@
+import{t as e}from"./react-CYAoy8YY.js";import{c as t,o as n}from"./dist-4WOC3HhI.js";e();var r=t();function i({className:e,pulsing:t=!0,...i}){return(0,r.jsx)(`div`,{"aria-hidden":`true`,className:n(`t-skel-bar rounded-md bg-primary/10`,t&&`is-pulsing`,e),...i})}export{i as t};

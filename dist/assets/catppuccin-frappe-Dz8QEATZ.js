@@ -1,0 +1,1 @@
+import e from"./catppuccin-frappe-3VR1Za6u.js";export{e as default};

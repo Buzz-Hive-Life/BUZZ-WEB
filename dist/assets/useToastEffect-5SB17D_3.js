@@ -1,0 +1,1 @@
+import{s as e,t}from"./react-CYAoy8YY.js";import{r as n}from"./dist-Cierd-FH.js";var r=e(t(),1);function i(e,t){let i=r.useRef(null);r.useEffect(()=>{e&&e!==i.current&&(i.current=e,n[t](e)),e||(i.current=null)},[e,t])}function a(e,t){i(e,`success`),i(t,`error`)}export{a as t};

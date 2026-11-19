@@ -1,0 +1,1 @@
+import e from"./plastic-DQwYfKfQ.js";export{e as default};

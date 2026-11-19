@@ -1,0 +1,1 @@
+import e from"./slack-ochin-B2OO5cIa.js";export{e as default};

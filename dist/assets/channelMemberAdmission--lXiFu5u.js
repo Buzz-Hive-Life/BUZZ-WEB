@@ -1,0 +1,1 @@
+import{s as e}from"./dist-4WOC3HhI.js";var t=e(`square`,[[`rect`,{width:`18`,height:`18`,x:`3`,y:`3`,rx:`2`,key:`afitv7`}]]);function n({channelType:e,visibility:t,selfRole:n}){return e===`dm`?!1:t===`open`?!0:t===`private`?n!=null:!1}var r=`Only channel members can add people to a private channel.`;export{n,t as r,r as t};

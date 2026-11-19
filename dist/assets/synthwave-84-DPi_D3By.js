@@ -1,0 +1,1 @@
+import e from"./synthwave-84-nFMaYfgc.js";export{e as default};
