@@ -122,7 +122,22 @@
     <link rel="modulepreload" crossorigin href="/assets/link-2-C52D70eC.js">
     <link rel="stylesheet" crossorigin href="/assets/card-texture-B4AjYKdN.css">
     <link rel="stylesheet" crossorigin href="/assets/index-lYDcR84w.css">
-  </head>
+      <!-- HIVE BOOT: point the client at the Hive community before the app starts,
+         so the member never meets the "Community connection failed" screen. -->
+    <script>
+      (function () {
+        try {
+          var RELAY = "https://blockbuzzmain-production-be33.up.railway.app";
+          var rec = { id: "hive", name: "Hive Life Haven", relayUrl: RELAY, addedAt: new Date().toISOString() };
+          var cur = [];
+          try { cur = JSON.parse(localStorage.getItem("buzz-communities") || "[]") || []; } catch (e) { cur = []; }
+          if (!cur.some(function (c) { return c && c.relayUrl === RELAY; })) cur.push(rec);
+          localStorage.setItem("buzz-communities", JSON.stringify(cur));
+          if (!localStorage.getItem("buzz-active-community-id")) localStorage.setItem("buzz-active-community-id", "hive");
+        } catch (e) { /* never block boot */ }
+      })();
+    </script>
+</head>
 
   <body>
     <div id="root"></div>
